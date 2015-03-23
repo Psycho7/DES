@@ -218,6 +218,7 @@ csx/
 AppPackages/
 
 # Others
+*.gch
 sql/
 *.Cache
 ClientBin/
