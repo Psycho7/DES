@@ -2,21 +2,21 @@
 #define DES_H
 
 typedef unsigned long long int DES_Value;
-enum DES_Mode
-{
-  Encrypt,
-  Decrypt
-};
 
 class DES
 {
 public:
-
   DES();
   ~DES();
-  DES_Value Encrypt(const DES_Value& key, const DES_Value& data,const DES_Mode& flag);
-
+  DES_Value Encrypt(const DES_Value& key, const DES_Value& data);
+  DES_Value Decrypt(const DES_Value& key, const DES_Value& data);
 private:
+  enum DES_Mode
+  {
+    EncryptMode,
+    DecryptMode
+  };
+  DES_Value Action(const DES_Value& key, const DES_Value& data,const DES_Mode& flag);
   void SubKey(const DES_Value& key);
   DES_Value Transposition(const DES_Value& value);
   DES_Value InverseTransposition(const DES_Value& value);

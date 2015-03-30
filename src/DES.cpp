@@ -94,9 +94,17 @@ DES::~DES()
 {
 }
 
-DES_Value DES::Encrypt(const DES_Value& key, const DES_Value& data,const DES_Mode& flag) {
+DES_Value DES::Encrypt(const DES_Value& key, const DES_Value& data) {
+  return Action(key, data, EncryptMode);
+}
+
+DES_Value DES::Decrypt(const DES_Value& key, const DES_Value& data) {
+  return Action(key, data, DecryptMode);
+}
+
+DES_Value DES::Action(const DES_Value& key, const DES_Value& data,const DES_Mode& flag) {
   SubKey(key);
-  if (flag == DES_Mode::Decrypt)
+  if (flag == DecryptMode)
     for (int i = 0; i < 8; i++) {
       DES_Value temp = _keys[i];
       _keys[i] = _keys[15-i];
